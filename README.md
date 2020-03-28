@@ -1,59 +1,47 @@
 
-# Welcome to your CDK Python project!
+# Sample of Infrastructure in Cloud Development Kit
 
-You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`infrastructure_cdk_stack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+This project creates a VPC with associated NACLs, Instances (including a bastion host), and RDS. 
+Attempts have been made parameterize both stacks as much as possible for use in
+dev or production environments.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-This project is set up like a standard Python project.  The initialization process also creates
-a virtualenv within this project, stored under the .env directory.  To create the virtualenv
-it assumes that there is a `python3` executable in your path with access to the `venv` package.
-If for any reason the automatic creation of the virtualenv fails, you can create the virtualenv
-manually once the init process completes.
-
-To manually create a virtualenv on MacOS and Linux:
+Make sure you properly configure your python virtualenv.
 
 ```
 $ python3 -m venv .env
-```
-
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
-
-```
+$ pip install -r requirements.txt
 $ source .env/bin/activate
 ```
 
-If you are a Windows platform, you would activate the virtualenv like this:
+
+
+## Network
+
+You have the option to input your own CIDR block and prefix length. 
+The network ACLs are configured to block non-ephemeral ports outbound. Ideally,
+it should also only allow the DB port inbound, but that functionality is still
+not supported on CDK (see code comments for details).
+
+## Instances
+
+The instances stack allows you to choose whether you prefer SSM (default) or SSH.
+If you choose SSH, you can specify a key with the `key_name` parameter. If the key
+exists, it will select the key. If no such key exists, it will create one for you
+and print out the private key.
+
+## Database
+
+You can customize the following parameters by passing it to the constructor.
 
 ```
-% .env\Scripts\activate.bat
+storage             
+storage_type        
+ec2_type             
+multi_az             
+deletion_protection 
+backup_retention    
 ```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-$ pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-$ cdk synth
-```
-
-You can now begin exploring the source code, contained in the hello directory.
-There is also a very trivial test included that can be run like this:
-
-```
-$ pytest
-```
-
-To add additional dependencies, for example other CDK libraries, just add to
-your requirements.txt file and rerun the `pip install -r requirements.txt`
-command.
-
+Default values are provided and assumes a development environment.
 ## Useful commands
 
  * `cdk ls`          list all stacks in the app
@@ -62,4 +50,3 @@ command.
  * `cdk diff`        compare deployed stack with current state
  * `cdk docs`        open CDK documentation
 
-Enjoy!

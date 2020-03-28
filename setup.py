@@ -6,25 +6,25 @@ with open("README.md") as fp:
 
 
 setuptools.setup(
-    name="infrastructure_cdk",
-    version="0.0.1",
+    name="InfrastructureCdkSample",
+    version="1.0.0",
 
-    description="A sample CDK Python app",
+    description="Create new VPC, network ACL, AutoscalingGroup behind a load balancer, RDS instance, bastion host, as well as (almost) proper NACL configuration",
     long_description=long_description,
     long_description_content_type="text/markdown",
 
-    author="author",
+    author="Miguel Zenon Nicanor Lerias Saavedra (Zenon)",
 
     package_dir={"": "infrastructure_cdk"},
     packages=setuptools.find_packages(where="infrastructure_cdk"),
 
     install_requires=[
-        "aws-cdk.core==1.30.0",
-        "aws-cdk.aws_iam==1.30.0",
-        "aws-cdk.aws_sqs==1.30.0",
-        "aws-cdk.aws_sns==1.30.0",
-        "aws-cdk.aws_sns_subscriptions==1.30.0",
-        "aws-cdk.aws_s3==1.30.0",
+        "aws-cdk.core",
+        "aws-cdk.aws-ec2",
+        "aws-cdk.aws-elasticloadbalancingv2",
+        "aws-cdk.aws-autoscaling",
+        "aws-cdk.aws-rds",
+        "boto3"
     ],
 
     python_requires=">=3.6",
@@ -34,7 +34,7 @@ setuptools.setup(
 
         "Intended Audience :: Developers",
 
-        "License :: OSI Approved :: Apache Software License",
+        "License :: OSI Approved :: MIT License",
 
         "Programming Language :: JavaScript",
         "Programming Language :: Python :: 3 :: Only",
