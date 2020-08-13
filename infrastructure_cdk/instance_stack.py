@@ -65,7 +65,7 @@ class InstanceStack(core.Stack):
                                     open=True)
 
         # Create Autoscaling Group with fixed 2*EC2 hosts
-        self.asg = autoscaling.AutoScalingGroup(self, "myASG",
+        self.asg = autoscaling.AutoScalingGroup(self, "Globomantics-Web",
                                                 vpc=vpc,
                                                 vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE),
                                                 instance_type=ec2.InstanceType(instance_type_identifier=ec2_type),
