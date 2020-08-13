@@ -19,7 +19,7 @@ class DatabaseStack(core.Stack):
 
         db = rds.DatabaseInstance(self, "Database",
                                              engine=rds.DatabaseInstanceEngine.POSTGRES,
-                                             instance_class=ec2.InstanceType(instance_type_identifier=ec2_type),
+                                             instance_type=ec2.InstanceType(instance_type_identifier=ec2_type),
                                              master_username="dba",
                                              vpc=vpc,
                                              multi_az=multi_az,
@@ -27,7 +27,8 @@ class DatabaseStack(core.Stack):
                                              storage_type=storage_type,
                                              cloudwatch_logs_exports=["postgresql", "upgrade"],
                                              deletion_protection=deletion_protection,
-                                             backup_retention=core.Duration.days(backup_retention)
+                                             backup_retention=core.Duration.days(backup_retention),
+                                             removal_policy=core.RemovalPolicy.DESTROY
                                              )
         for asg_sg in backend_security_groups:
             db.connections.allow_default_port_from(asg_sg, "From backend instances to databases")

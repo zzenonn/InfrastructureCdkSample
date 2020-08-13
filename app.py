@@ -22,10 +22,10 @@ ec2_instances = InstanceStack(app,
                                                    region   = os.environ["CDK_DEFAULT_REGION"]))
                                                    
 db_instances = DatabaseStack(app, 
-                            "DatabaseStack", 
-                            network.vpc, 
-                            ec2_instances.asg.connections.security_groups, 
-                            env                 = core.Environment(account  = os.environ["CDK_DEFAULT_ACCOUNT"], 
-                                                                   region   = os.environ["CDK_DEFAULT_REGION"]))
+                             "DatabaseStack", 
+                             network.vpc, 
+                             ec2_instances.asg.connections.security_groups, 
+                             env= core.Environment(account  = os.environ["CDK_DEFAULT_ACCOUNT"], 
+                                                              region   = os.environ["CDK_DEFAULT_REGION"]))
 
 app.synth()

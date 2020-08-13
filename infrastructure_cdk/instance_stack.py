@@ -5,7 +5,6 @@ import aws_cdk.aws_autoscaling as autoscaling
 import aws_cdk.aws_iam as iam
 import boto3
 
-  # Setup key_name for EC2 instance login 
 linux_ami = ec2.AmazonLinuxImage(generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
                                  edition=ec2.AmazonLinuxEdition.STANDARD,
                                  virtualization=ec2.AmazonLinuxVirt.HVM,
