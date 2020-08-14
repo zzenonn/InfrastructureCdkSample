@@ -1,6 +1,7 @@
-from aws_cdk import core
-import aws_cdk.aws_ec2 as ec2
-
+from aws_cdk import (
+    core,
+    aws_ec2 as ec2
+)
 
 class NetworkStack(core.Stack):
 
@@ -32,8 +33,6 @@ class NetworkStack(core.Stack):
                            nat_gateways=nat_gatways
                            )
                            
-                           
-        
         
         private_subnets = self.vpc.private_subnets
         isolated_subnets = self.vpc.isolated_subnets

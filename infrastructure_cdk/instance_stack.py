@@ -1,8 +1,11 @@
-from aws_cdk import core
-import aws_cdk.aws_ec2 as ec2
-import aws_cdk.aws_elasticloadbalancingv2 as elb
-import aws_cdk.aws_autoscaling as autoscaling
-import aws_cdk.aws_iam as iam
+from aws_cdk import (
+    core,
+    aws_ec2 as ec2,
+    aws_elasticloadbalancingv2 as elb,
+    aws_autoscaling as autoscaling,
+    aws_iam as iam
+)
+
 import boto3
 
 linux_ami = ec2.AmazonLinuxImage(generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
@@ -10,13 +13,13 @@ linux_ami = ec2.AmazonLinuxImage(generation=ec2.AmazonLinuxGeneration.AMAZON_LIN
                                  virtualization=ec2.AmazonLinuxVirt.HVM,
                                  storage=ec2.AmazonLinuxStorage.GENERAL_PURPOSE
                                  )  # Indicate your AMI, no need a specific id in the region
-with open("./user_data/user_data.sh") as f:
-    user_data = f.read()
-
 
 class InstanceStack(core.Stack):
 
-    def __init__(self, scope: core.Construct, id: str, vpc, use_ssm=True, key_name=None, asg_min=2, asg_max=5, ec2_type="t3.micro", **kwargs) -> None:
+    def __init__(self, scope: core.Construct, id: str, vpc, use_ssm=True, 
+                 key_name=None, asg_min=2, asg_max=5, ec2_type="t3.micro", 
+                 user_data="", **kwargs) -> None:
+        
         super().__init__(scope, id, **kwargs)
         
         if key_name:

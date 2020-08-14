@@ -1,7 +1,8 @@
-from aws_cdk import core
-import aws_cdk.aws_ec2 as ec2
-import aws_cdk.aws_rds as rds
-
+from aws_cdk import (
+    core,
+    aws_ec2 as ec2,
+    aws_rds as rds
+)
 
 class DatabaseStack(core.Stack):
 

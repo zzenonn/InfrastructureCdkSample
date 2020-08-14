@@ -23,7 +23,12 @@ setuptools.setup(
         "aws-cdk.aws-ec2",
         "aws-cdk.aws-elasticloadbalancingv2",
         "aws-cdk.aws-autoscaling",
+        "aws-cdk.aws-lambda",
+        "aws-cdk.aws_apigateway",
         "aws-cdk.aws-rds",
+        "aws_cdk.aws_ecs",
+        "aws_cdk.aws_ecr_assets",
+        "aws_cdk.aws_ecs_patterns",
         "boto3"
     ],
 
