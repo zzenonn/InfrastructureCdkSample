@@ -87,5 +87,5 @@ class InstanceStack(core.Stack):
                              port=80,
                              targets=[self.asg])
 
-        core.CfnOutput(self, "Output",
+        core.CfnOutput(self, "ElbEndpoint",
                        value=alb.load_balancer_dns_name)
