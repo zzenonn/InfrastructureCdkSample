@@ -21,7 +21,7 @@ class DatabaseStack(core.Stack):
         db = rds.DatabaseInstance(self, "Database",
                                              engine=rds.DatabaseInstanceEngine.POSTGRES,
                                              instance_type=ec2.InstanceType(instance_type_identifier=ec2_type),
-                                             master_username="dba",
+                                             credentials=rds.Credentials.from_username(username="dba"),
                                              vpc=vpc,
                                              multi_az=multi_az,
                                              allocated_storage=storage,

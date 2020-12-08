@@ -1,5 +1,6 @@
 from aws_cdk import (
     core,
+    aws_ec2 as ec2,
     aws_ecs as ecs,
     aws_ecr_assets as ecs_assets,
     aws_ecs_patterns as ecs_patterns
@@ -31,6 +32,7 @@ class EcsStack(core.Stack):
                                     container_name = "Globomantics-Landing-Page",
                                     container_port = 80
                                     ),
-            memory_limit_mib=512,      
+            memory_limit_mib    = 512,
+            task_subnets        = ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE), # Released in v1.77.0
             public_load_balancer=True)  
         
