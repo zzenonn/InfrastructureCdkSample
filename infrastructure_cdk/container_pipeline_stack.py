@@ -39,7 +39,7 @@ class ContainerPipelineStack(core.Stack):
             )
         )     
         
-        pipeline.add_application_stage(ContainerAppStage(self, "Dev", vpc=vpc,
+        pipeline.add_application_stage(ContainerAppStage(self, "Dev",
                                 env=core.Environment(account  = core.Aws.ACCOUNT_ID, 
                                                      region   = core.Aws.REGION)))
                                                                                
