@@ -29,6 +29,9 @@ setuptools.setup(
         "aws_cdk.aws_ecs",
         "aws_cdk.aws_ecr_assets",
         "aws_cdk.aws_ecs_patterns",
+        "aws_cdk.pipelines",
+        "aws_cdk.aws_codepipeline",
+        "aws_cdk.aws_codepipeline_actions",
         "boto3"
     ],
 

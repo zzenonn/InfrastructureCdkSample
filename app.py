@@ -9,6 +9,7 @@ from infrastructure_cdk.instance_stack import InstanceStack
 from infrastructure_cdk.database_stack import DatabaseStack
 from infrastructure_cdk.ecs_stack import EcsStack
 from infrastructure_cdk.lambda_stack import LambdaStack
+from infrastructure_cdk.container_pipeline_stack import ContainerPipelineStack
 import jsii
 
 # As part of AWS CDK v2.0, the add_warning function will be deprecated
@@ -27,11 +28,17 @@ class CheckTerminationProtection:
 with open("./user_data/user_data.sh") as f:
     user_data = f.read()
 
+
 app = core.App()
-NETWORK       = NetworkStack(app, 
-                             "NetworkStack", 
-                             env=core.Environment(account = os.environ["CDK_DEFAULT_ACCOUNT"], 
-                                                  region  = os.environ["CDK_DEFAULT_REGION"]))
+NETWORK       = NetworkStack(
+                    app, "NetworkStack", 
+                    env=core.Environment(account = os.environ["CDK_DEFAULT_ACCOUNT"], 
+                                         region  = os.environ["CDK_DEFAULT_REGION"]))
+                                         
+CONTAINER_PIPELINE = ContainerPipelineStack(
+                    app, "ContainerPipelineStack", 
+                    env=core.Environment(account = os.environ["CDK_DEFAULT_ACCOUNT"], 
+                                         region  = os.environ["CDK_DEFAULT_REGION"]))                                         
                                                      
 EC2_INSTANCES = InstanceStack(app, 
                               "InstanceStack", 
