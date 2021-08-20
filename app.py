@@ -36,7 +36,8 @@ NETWORK       = NetworkStack(
                                          region  = os.environ["CDK_DEFAULT_REGION"]))
                                          
 CONTAINER_PIPELINE = ContainerPipelineStack(
-                    app, "ContainerPipelineStack", 
+                    app, "ContainerPipelineStack",
+                    vpc=NETWORK.vpc,
                     env=core.Environment(account = os.environ["CDK_DEFAULT_ACCOUNT"], 
                                          region  = os.environ["CDK_DEFAULT_REGION"]))                                         
                                                      

@@ -1,16 +1,15 @@
 from aws_cdk import (
-    aws_lambda as _lambda,
-    aws_apigateway as apigw,
     aws_codepipeline as codepipeline,
     aws_codepipeline_actions as codepipeline_actions,
     pipelines,
     core
 )
+from container_app_stage import ContainerAppStage
 
 
 class ContainerPipelineStack(core.Stack):
 
-    def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
+    def __init__(self, scope: core.Construct, id: str, vpc, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
         
         codestar_arn = core.CfnParameter(self, "CodeStarArn", type="String",
@@ -19,7 +18,7 @@ class ContainerPipelineStack(core.Stack):
         source_artifact = codepipeline.Artifact()
         cloud_assembly_artifact = codepipeline.Artifact()
         
-        pipelines.CdkPipeline(self, 'ContainerPipeline',
+        pipeline = pipelines.CdkPipeline(self, 'ContainerPipeline',
             cloud_assembly_artifact=cloud_assembly_artifact,
             pipeline_name="ContainerPipeline",
             source_action=codepipeline_actions.CodeStarConnectionsSourceAction(
@@ -38,6 +37,9 @@ class ContainerPipelineStack(core.Stack):
                 install_command="npm install -g aws-cdk && pip install -r requirements.txt",
                 synth_command="cdk synth"
             )
-                                                                               
-        )                                                                       
+        )     
+        
+        pipeline.add_application_stage(ContainerAppStage(self, "Dev", vpc=vpc,
+                                env=core.Environment(account  = core.Aws.ACCOUNT_ID, 
+                                                     region   = core.Aws.REGION)))
                                                                                
