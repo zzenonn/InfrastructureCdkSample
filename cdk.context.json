@@ -1,5 +1,4 @@
 {
-  "@aws-cdk/core:enableStackNameDuplicates": "true",
   "aws-cdk:enableDiffNoFail": "true",
   "availability-zones:account=883779074323:region=ap-southeast-1": [
     "ap-southeast-1a",

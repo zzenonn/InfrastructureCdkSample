@@ -37,11 +37,11 @@ NETWORK       = NetworkStack(
                     env=cdk.Environment(account = os.environ["CDK_DEFAULT_ACCOUNT"], 
                                          region  = os.environ["CDK_DEFAULT_REGION"]))
                                          
-CONTAINER_PIPELINE = ContainerPipelineStack(
-                    app, "ContainerPipelineStack",
-                    vpc=NETWORK.vpc,
-                    env=cdk.Environment(account = os.environ["CDK_DEFAULT_ACCOUNT"], 
-                                         region  = os.environ["CDK_DEFAULT_REGION"]))                                         
+# CONTAINER_PIPELINE = ContainerPipelineStack(
+#                     app, "ContainerPipelineStack",
+#                     vpc=NETWORK.vpc,
+#                     env=cdk.Environment(account = os.environ["CDK_DEFAULT_ACCOUNT"], 
+#                                          region  = os.environ["CDK_DEFAULT_REGION"]))                                         
                                                      
 EC2_INSTANCES = InstanceStack(app, 
                               "InstanceStack", 
@@ -68,5 +68,5 @@ DB_INSTANCES = DatabaseStack(app,
                              env=cdk.Environment(account  = os.environ["CDK_DEFAULT_ACCOUNT"], 
                                                   region   = os.environ["CDK_DEFAULT_REGION"]))
 
-app.node.apply_aspect(CheckTerminationProtection())
+cdk.Aspects.of(app).add(CheckTerminationProtection())
 app.synth()

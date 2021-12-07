@@ -1,23 +1,20 @@
-from aws_cdk import (
-    aws_lambda as _lambda,
-    aws_apigateway as apigw,
-    core
-)
+from constructs import Construct
+import aws_cdk as cdk
 
 
-class LambdaStack(core.Stack):
+class LambdaStack(cdk.Stack):
 
-    def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-        hello_function = _lambda.Function(
+        hello_function = cdk.aws_lambda.Function(
             self, 'WelcomeHandler',
-            runtime=_lambda.Runtime.PYTHON_3_7,
-            code=_lambda.Code.asset('lambda-api'),
+            runtime=cdk.aws_lambda.Runtime.PYTHON_3_8,
+            code=cdk.aws_lambda.Code.from_asset('lambda-api'),
             handler='welcome.handler',
         )
 
-        apigw.LambdaRestApi(
+        cdk.aws_apigateway.LambdaRestApi(
             self, 'Endpoint',
             handler=hello_function,
         )
