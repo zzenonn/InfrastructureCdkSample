@@ -19,19 +19,8 @@ setuptools.setup(
     packages=setuptools.find_packages(where="infrastructure_cdk"),
 
     install_requires=[
-        "aws-cdk.core",
-        "aws-cdk.aws-ec2",
-        "aws-cdk.aws-elasticloadbalancingv2",
-        "aws-cdk.aws-autoscaling",
-        "aws-cdk.aws-lambda",
-        "aws-cdk.aws_apigateway",
-        "aws-cdk.aws-rds",
-        "aws_cdk.aws_ecs",
-        "aws_cdk.aws_ecr_assets",
-        "aws_cdk.aws_ecs_patterns",
-        "aws_cdk.pipelines",
-        "aws_cdk.aws_codepipeline",
-        "aws_cdk.aws_codepipeline_actions",
+        "aws-cdk-lib>=2.0.0",
+        "constructs>=10.0.0",
         "boto3"
     ],
 
