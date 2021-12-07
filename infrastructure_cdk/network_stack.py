@@ -1,5 +1,4 @@
 from constructs import Construct
-
 import aws_cdk as cdk
 
 
