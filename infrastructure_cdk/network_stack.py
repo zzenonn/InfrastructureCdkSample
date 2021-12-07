@@ -59,5 +59,5 @@ class NetworkStack(cdk.Stack):
 
         
         
-        core.CfnOutput(self, "Output",
+        cdk.CfnOutput(self, "Output",
                        value=self.vpc.vpc_id)
