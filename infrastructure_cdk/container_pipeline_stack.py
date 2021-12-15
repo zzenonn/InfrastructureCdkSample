@@ -28,7 +28,7 @@ class ContainerPipelineStack(cdk.Stack):
             )
         )     
         
-        pipeline.add_application_stage(ContainerAppStage(self, "Dev",
+        pipeline.add_stage(ContainerAppStage(self, "Dev",
                                 env=cdk.Environment(account  = cdk.Aws.ACCOUNT_ID, 
                                                      region   = cdk.Aws.REGION)))
                                                                                
