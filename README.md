@@ -1,6 +1,8 @@
 
 # Sample of Infrastructure in Cloud Development Kit
 
+**Note: the version 2 code for this sample is found in the [version 2 branch](../../tree/v2.0.0).**
+
 This project creates a VPC with associated NACLs, Instances (including a bastion host), and RDS. 
 Attempts have been made parameterize both stacks as much as possible for use in
 dev or production environments.
